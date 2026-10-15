@@ -169,6 +169,7 @@ function nxBoot($name)
         $_SESSION["nyaaxport_csrf"] = bin2hex($bytes);
     }
     header("Cache-Control: no-store");
+    header("X-Robots-Tag: noindex, nofollow");
     header("X-Content-Type-Options: nosniff");
     header("Referrer-Policy: no-referrer");
 }
@@ -274,7 +275,7 @@ function nxHead($title)
     $lang = $_SESSION["nyaaxport_lang"]; ?><!doctype html>
 <html lang="<?= nxEscape(
     $lang
-) ?>"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= nxEscape($title) ?></title>
+) ?>"><head><meta charset="utf-8"><meta name="robots" content="noindex, nofollow"><meta name="viewport" content="width=device-width,initial-scale=1"><title><?= nxEscape($title) ?></title>
 <style>/* NX_UI_CSS */</style></head><body><main class="wrap">
 <nav class="langs" aria-label="Language"><?php foreach (
     ["ru" => "RU", "uk" => "UA", "en" => "EN"]

@@ -17,6 +17,31 @@ jobs:
           coverage: none
       - run: php -l nyaaxport.php && php -l nyaaxport_56.php && php -l nyaaxport_cloud.php
       - run: php tests/regression.php
+  mysql:
+    runs-on: ubuntu-latest
+    services:
+      mariadb:
+        image: mariadb:10.11
+        env:
+          MARIADB_ROOT_PASSWORD: nyaaxport-local-test
+          MARIADB_DATABASE: nyaaxport_test
+        ports:
+          - 3306:3306
+        options: >-
+          --health-cmd="healthcheck.sh --connect --innodb_initialized"
+          --health-interval=5s
+          --health-timeout=5s
+          --health-retries=20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.4'
+          extensions: zip, simplexml, curl, pdo_mysql
+          coverage: none
+      - run: php tests/mysql.php
+        env:
+          NX_TEST_DSN: 'mysql:host=127.0.0.1;dbname=nyaaxport_test'
   build:
     runs-on: ubuntu-latest
     steps:

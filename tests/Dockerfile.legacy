@@ -1,0 +1,13 @@
+ARG PHP_VERSION=5.6
+FROM php:7.4-cli AS headers
+RUN apt-get update && apt-get install -y --no-install-recommends zlib1g-dev
+
+FROM php:${PHP_VERSION}-cli
+# Bundled legacy ZIP uses the stable zlib ABI and needs its development headers.
+COPY --from=headers /usr/include/zlib.h /usr/include/zconf.h /usr/include/
+RUN ln -sf /lib/x86_64-linux-gnu/libz.so.1 /usr/lib/x86_64-linux-gnu/libz.so && docker-php-ext-install -j2 zip pdo_mysql
+WORKDIR /work
+COPY src/ ./src/
+COPY tests/ ./tests/
+COPY nyaaxport.php nyaaxport_56.php nyaaxport_cloud.php ./
+CMD ["php", "tests/regression.php"]

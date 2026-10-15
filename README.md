@@ -50,6 +50,12 @@ php tests/regression.php
 
 HTTP checks: run `node tests/prepare-web.mjs`, serve `.test-runtime/web` with PHP on `127.0.0.1:8766`, then run `node tests/web.mjs`. The local fixtures use a public test key and must never be deployed. Test fixtures do not connect to a production store.
 
+Docker on Windows: `powershell -File tests/docker.ps1` builds and runs PHP 5.6, 7.0, 7.4, 8.1, 8.4 and 8.5. Sources are copied into the image, so sharing the project drive is unnecessary. Tests run with a read-only filesystem, temporary `/tmp` and no network. Legacy images compile bundled ZIP with stable zlib development headers from the signed Debian packages in the PHP 7.4 stage.
+
+`tests/mysql.php` additionally checks OpenCart SQL against an isolated MariaDB database named `nyaaxport_test` supplied through `NX_TEST_DSN`; it recreates only its fixture tables. `tests/prepare-web.php` creates local HTTP fixtures in `/tmp/nyaaxport-web`. `tests/downloads.mjs` verifies every format, storefront membership, empty results and indexing headers against that fixture. These files are for tests only.
+
+Every exporter emits `X-Robots-Tag: noindex, nofollow` and an equivalent HTML robots meta tag. The public project website remains indexable.
+
 ## Support
 
 | Network | Address |

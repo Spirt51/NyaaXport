@@ -1,0 +1,8 @@
+**
+!src/
+!src/**
+!tests/
+!tests/**
+!nyaaxport.php
+!nyaaxport_56.php
+!nyaaxport_cloud.php

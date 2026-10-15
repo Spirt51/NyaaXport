@@ -585,7 +585,7 @@ function prepareCms($pdo, $cms)
             : 0;
         $cms["store_id"] = isset($_POST["store_id"]) ? max(0, (int) $_POST["store_id"]) : 0;
         if ($cms["store_id"] > 0) {
-            $st = $pdo->prepare("SELECT url,ssl FROM {$p}store WHERE store_id=?");
+            $st = $pdo->prepare("SELECT url,`ssl` FROM {$p}store WHERE store_id=?");
             $st->execute([$cms["store_id"]]);
             $store = $st->fetch();
             if ($store) {

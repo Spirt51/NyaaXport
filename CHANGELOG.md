@@ -9,6 +9,7 @@
 - Сайт использует реальные снимки страницы входа, три отдельных скачивания и инструкции с примером ключа.
 - **Изменение возможностей:** пункты Prom/Rozetka удалены из списка форматов: прежний универсальный XML не соответствовал отдельным фидам. Google/Meta/YML обозначены как beta. Варианты OpenCart означают отдельные значения опций, без комбинаций. Другие CMS экспортируют основные товары; Simpla выбирает первый вариант детерминированно.
 - Исходники разделены для сопровождения; каждый релизный PHP-файл остаётся автономным.
+- Все PHP-экспортёры отправляют `X-Robots-Tag: noindex, nofollow` и HTML-метатег robots. Проверки перенесены в Docker; добавлены интеграционные тесты MariaDB и скачивания всех форматов. Исправлено экранирование колонки `ssl` в запросе витрины OpenCart.
 
 ## Українська
 
@@ -28,6 +29,8 @@
 ## Verification scope
 
 Local regression checks run on PHP 5.6.40, 7.3 and 8.1, including XLSX archive integrity, late export failure, currency handling, Shopify pagination fixtures and unsafe API targets. HTTP tests cover session rotation, invalid CSRF, fresh-cookie throttling and logout. Browser checks cover themes, languages, mobile layout, forms, disabled JavaScript and unavailable localStorage.
+
+Docker regression matrix: PHP 5.6, 7.0, 7.4, 8.1, 8.4 and 8.5, with ZIP and PDO MySQL. MariaDB 10.11 fixtures verify actual OpenCart storefront SQL and option pricing. HTTP checks on PHP 5.6 and 8.4 download CSV/XML/XLS/XLSX/Google/Meta/YML, verify storefront exclusion, empty-result errors, and noindex headers/meta.
 
 No live store databases, marketplace import accounts or API credentials were supplied. Adapter SQL and external imports have not been certified against all supported store versions. Beta labels and explicit scope replace the previous unqualified compatibility claims.
 

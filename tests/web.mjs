@@ -1,6 +1,6 @@
 import {copyFileSync} from 'node:fs';
-const throttle='throttle-'+Date.now()+'.php';
-copyFileSync('.test-runtime/web/nyaaxport_cloud.php','.test-runtime/web/'+throttle);
+const throttle=process.env.NX_TEST_THROTTLE||'throttle-'+Date.now()+'.php';
+if(!process.env.NX_TEST_THROTTLE)copyFileSync('.test-runtime/web/nyaaxport_cloud.php','.test-runtime/web/'+throttle);
 const base='http://127.0.0.1:8766/';
 function assert(value,message){if(!value)throw new Error(message);console.log('PASS '+message)}
 async function session(path){const response=await fetch(base+path);const html=await response.text();return {cookie:response.headers.get('set-cookie').split(';')[0],csrf:html.match(/name="csrf" value="([^"]+)"/)[1]};}
