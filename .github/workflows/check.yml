@@ -1,0 +1,30 @@
+name: Check release builds
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  php:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['5.6', '7.0', '7.4', '8.1', '8.4', '8.5']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: zip, simplexml, curl, pdo_mysql
+          coverage: none
+      - run: php -l nyaaxport.php && php -l nyaaxport_56.php && php -l nyaaxport_cloud.php
+      - run: php tests/regression.php
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run css && npm run build && node tests/syntax.mjs
+      - run: git diff --exit-code -- nyaaxport.php nyaaxport_56.php nyaaxport_cloud.php assets/components.css SHA256SUMS

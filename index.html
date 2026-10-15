@@ -1,68 +1,222 @@
 <!doctype html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="NyaaXport — single-file product exporter for popular e-commerce platforms.">
-  <title>NyaaXport — Product Exporter</title>
-  <style>
-    :root{--ink:#17152f;--muted:#66647a;--accent:#635bff;--accent2:#a855f7;--bg:#f7f5ff;--card:#fff;--line:#e5defc}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 85% 0,#e7ddff 0,transparent 32%),var(--bg);color:var(--ink);font:16px/1.65 Inter,ui-sans-serif,system-ui,-apple-system,Segoe UI,sans-serif}a{color:var(--accent)}.wrap{width:min(1120px,calc(100% - 32px));margin:auto}.nav{display:flex;align-items:center;justify-content:space-between;padding:22px 0}.brand{font-size:21px;font-weight:900;letter-spacing:-.5px}.langs{display:flex;gap:6px}.langs button{border:1px solid var(--line);background:#ffffffa8;padding:7px 11px;border-radius:9px;cursor:pointer;font-weight:800;color:var(--ink)}.langs button.active{background:var(--accent);color:#fff;border-color:var(--accent)}.hero{padding:70px 0 55px;display:grid;grid-template-columns:1.3fr .7fr;gap:45px;align-items:center}.eyebrow{display:inline-flex;background:#eee9ff;color:#4c35ca;padding:6px 11px;border-radius:999px;font-weight:800;font-size:13px}.hero h1{font-size:clamp(48px,8vw,88px);line-height:.95;letter-spacing:-5px;margin:22px 0}.lead{font-size:20px;color:var(--muted);max-width:720px}.actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:28px}.btn{display:inline-block;text-decoration:none;padding:13px 18px;border-radius:11px;font-weight:850;border:1px solid var(--line);background:#fff}.btn.primary{background:linear-gradient(135deg,var(--accent),var(--accent2));color:#fff;border:0}.terminal{background:#17152f;color:#d9d2ff;border-radius:20px;padding:23px;box-shadow:0 26px 65px #312e8140;font:14px/1.8 ui-monospace,SFMono-Regular,Consolas,monospace}.terminal b{color:#73f2b1}.section{padding:45px 0}.section h2{font-size:34px;letter-spacing:-1.3px;margin:0 0 20px}.preview{margin:0}.preview img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:19px;box-shadow:0 24px 70px #312e8124}.preview figcaption{margin-top:10px;text-align:center;color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:17px;padding:22px;box-shadow:0 10px 30px #312e810d}.card h3{margin-top:0}.card p,.card li{color:var(--muted)}.platforms{display:flex;flex-wrap:wrap;gap:8px}.tag{padding:7px 11px;border:1px solid var(--line);border-radius:999px;background:#fff;font-size:14px}.steps{counter-reset:step}.step{position:relative;padding-left:55px;margin:22px 0}.step:before{counter-increment:step;content:counter(step);position:absolute;left:0;top:0;width:36px;height:36px;display:grid;place-items:center;border-radius:10px;background:var(--accent);color:#fff;font-weight:900}.key-example{margin:13px 0 0;padding:15px;border-radius:12px;background:#17152f;color:#ddd6fe;overflow:auto;font:13px/1.7 ui-monospace,SFMono-Regular,Consolas,monospace}.key-example .old{color:#fda4af}.key-example .new{color:#86efac}.key-note{display:block;margin-top:7px;color:var(--muted);font-size:13px}.donate table{width:100%;table-layout:fixed;border-collapse:collapse}.donate th,.donate td{text-align:left;padding:11px;border-bottom:1px solid var(--line);vertical-align:top}.donate th:first-child,.donate td:first-child{width:28%}.donate th:last-child,.donate td:last-child{width:72%}.donate td:last-child{font-family:ui-monospace,Consolas,monospace;overflow-wrap:anywhere;word-break:break-word}.paypal-btn{display:inline-block;padding:8px 14px;border-radius:9px;background:#0070ba;color:#fff;text-decoration:none;font-family:Inter,ui-sans-serif,system-ui,sans-serif;font-weight:850;white-space:nowrap}.paypal-btn:hover{background:#005ea6}.notice{background:#fff7df;color:#7c5200;padding:13px;border-radius:11px;margin-top:15px}.footer{text-align:center;color:var(--muted);padding:35px 0 50px}.lang-page{display:none}.lang-page.active{display:block}@media(max-width:820px){.hero{grid-template-columns:1fr;padding-top:35px}.grid{grid-template-columns:1fr}.hero h1{letter-spacing:-3px}.terminal{order:-1}.step{padding-left:48px}.key-example{font-size:11px;padding:12px}.donate th,.donate td{display:table-cell;padding:7px 5px;font-size:12px}.donate th:first-child,.donate td:first-child{width:31%}.donate th:last-child,.donate td:last-child{width:69%}.paypal-btn{padding:7px 9px;font-size:12px}}
-  </style>
-</head>
-<body>
-  <nav class="wrap nav"><div class="brand">NyaaXport</div><div class="langs"><button data-lang="ru">RU</button><button data-lang="uk">UK</button><button data-lang="en">EN</button></div></nav>
-  <main>
-    <article class="lang-page" data-page="ru">
-      <header class="wrap hero"><div><span class="eyebrow">Один файл. Любой каталог.</span><h1>NyaaXport</h1><p class="lead">Автономный экспортёр товаров для популярных CMS и облачных магазинов — без модулей, Composer и сложной настройки.</p><div class="actions"><a class="btn primary" href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport.php">Основная версия · PHP 7–8</a><a class="btn" href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport_56.php">Версия для PHP 5.6</a><a class="btn" href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport_cloud.php">Облачные магазины</a></div></div><div class="terminal"><b>$</b> upload nyaaxport.php<br><b>✓</b> CMS detected<br><b>✓</b> 12,450 products<br><b>✓</b> SEO URLs + variants<br><b>→</b> CSV · XML · XLS · XLSX</div></header>
-      <section class="wrap section"><figure class="preview"><img src="assets/interface-ru.png" alt="Интерфейс NyaaXport на русском языке" width="1280" height="720" loading="lazy"><figcaption>Пример интерфейса NyaaXport на русском языке</figcaption></figure></section>
-      <section class="wrap section"><h2>Функциональность</h2><div class="grid"><div class="card"><h3>Универсальный экспорт</h3><p>Выбор полей, языков, витрин, вариантов и фильтров. Потоковая обработка больших каталогов.</p></div><div class="card"><h3>Готовые форматы</h3><p>CSV, XML, XLS, XLSX, Google Merchant, Meta Catalog, YML, Prom.ua и Rozetka.</p></div><div class="card"><h3>Безопасность</h3><p>Ключ доступа, CSRF, ограничение входов, тайм-аут сессии, IP allowlist и диагностика.</p></div></div></section>
-      <section class="wrap section"><h2>Поддерживаемые платформы</h2><div class="platforms"><span class="tag">OpenCart / ocStore</span><span class="tag">WooCommerce</span><span class="tag">PrestaShop</span><span class="tag">1C-Битрикс</span><span class="tag">CS-Cart</span><span class="tag">Magento 2</span><span class="tag">Shopware 6</span><span class="tag">Webasyst</span><span class="tag">MODX miniShop2</span><span class="tag">VirtueMart</span><span class="tag">HikaShop</span><span class="tag">JoomShopping</span><span class="tag">Simpla / OkayCMS</span><span class="tag">Shopify</span><span class="tag">BigCommerce</span><span class="tag">Wix</span><span class="tag">Prom.ua</span><span class="tag">Horoshop / JSON API</span></div></section>
-      <section class="wrap section"><h2>Требования</h2><div class="grid"><div class="card"><h3>PHP 5.6</h3><p><code>nyaaxport_56.php</code>, PDO MySQL и ZipArchive для XLSX.</p></div><div class="card"><h3>PHP 7–8</h3><p><code>nyaaxport.php</code>, PDO MySQL и ZipArchive.</p></div><div class="card"><h3>Облачные API</h3><p><code>nyaaxport_cloud.php</code>, PHP 7–8, cURL и API-токен магазина.</p></div></div></section>
-      <section class="wrap section"><h2>Установка</h2><div class="steps"><div class="step"><b>Скачайте файл</b><br>Выберите сборку в последнем GitHub-релизе.</div><div class="step"><b>Установите ключ</b><br>Откройте PHP-файл в текстовом редакторе и замените значение в начале файла:<pre class="key-example"><code><span class="old">const NYAAXPORT_ACCESS_KEY = 'CHANGE-ME-NOW';</span>
-<span class="new">const NYAAXPORT_ACCESS_KEY = 'мой-длинный-уникальный-ключ';</span>
+<html lang="en" data-theme="light">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width,initial-scale=1" />
+        <meta
+            name="description"
+            content="NyaaXport: standalone PHP product exporter for CMS and cloud APIs."
+        />
+        <title>NyaaXport | Product exporter</title>
+        <link rel="stylesheet" href="assets/components.css" />
+        <link rel="stylesheet" href="assets/site.css" />
+    </head>
+    <body>
+        <nav class="wrap nav" aria-label="Language and theme">
+            <a class="brand" href="#top">NyaaXport</a>
+            <div class="nav-actions">
+                <div class="langs">
+                    <button class="btn" data-lang="ru" aria-pressed="false">RU</button
+                    ><button class="btn" data-lang="uk" aria-pressed="false">UA</button
+                    ><button class="btn" data-lang="en" aria-pressed="true">EN</button>
+                </div>
+                <button class="btn" id="theme" data-t="theme">Light / dark</button>
+            </div>
+        </nav>
+        <main id="top" class="wrap">
+            <header class="hero">
+                <h1>NyaaXport</h1>
+                <p class="lead" data-t="lead">
+                    Export your store catalog with one PHP file. Select columns, filter products and download
+                    a table.
+                </p>
+                <div class="downloads">
+                    <div>
+                        <a
+                            class="btn btn-primary"
+                            href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport.php"
+                            data-t="main"
+                            >Download for PHP 7–8</a
+                        >
+                        <p data-t="cmsReq">CMS build: PDO MySQL; ZipArchive for XLSX.</p>
+                    </div>
+                    <div>
+                        <a
+                            class="btn"
+                            href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport_56.php"
+                            data-t="legacy"
+                            >Download for PHP 5.6</a
+                        >
+                        <p data-t="legacyReq">
+                            Legacy PHP with the same CMS interface. OpenSSL, PDO MySQL; ZipArchive for XLSX.
+                        </p>
+                    </div>
+                    <div>
+                        <a
+                            class="btn"
+                            href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport_cloud.php"
+                            data-t="cloud"
+                            >Download Cloud</a
+                        >
+                        <p data-t="cloudReq">
+                            PHP 7–8, cURL, public HTTPS API and store token. CSV, XML and Excel HTML.
+                        </p>
+                    </div>
+                </div>
+                <a
+                    class="release"
+                    href="https://github.com/Spirt51/NyaaXport/releases/tag/v1.1.0"
+                    data-t="release"
+                    >Release 1.1.0: changes and limitations</a
+                >
+            </header>
+            <section>
+                <h2 data-t="screens">Inside the exporter</h2>
+                <p data-t="screenNote">
+                    Actual PHP login interface, available before connecting to the store database.
+                </p>
+                <figure>
+                    <img
+                        id="interface"
+                        src="assets/interface-en.png"
+                        alt="NyaaXport login interface in English"
+                        width="1280"
+                        height="1000"
+                    />
+                    <figcaption data-t="languages">
+                        Interface and instructions in English, Russian and Ukrainian.
+                    </figcaption>
+                </figure>
+            </section>
+            <section class="details">
+                <div>
+                    <h2 data-t="features">Export options</h2>
+                    <ul>
+                        <li data-t="fields">
+                            Name, SKU, URL, price, stock, descriptions, images and other available fields.
+                        </li>
+                        <li data-t="filters">
+                            Filters by price, stock, status, category, manufacturer and modification date.
+                        </li>
+                        <li data-t="formats">
+                            CSV, XML, XLSX and Excel HTML (.xls). Google Merchant, Meta and YML are beta
+                            feeds: validate before import.
+                        </li>
+                        <li data-t="variants">
+                            OpenCart: data language, storefront and separate option values. No option
+                            combinations. Other CMS export base products; Simpla uses the first variant.
+                        </li>
+                    </ul>
+                </div>
+                <aside>
+                    <h2 data-t="protection">Access and export</h2>
+                    <p data-t="security">
+                        Access key, CSRF checks, a 15-minute IP login limit and session expiry. Optional IP
+                        allowlist in CMS builds.
+                    </p>
+                    <p data-t="atomic">
+                        The complete file is prepared on temporary disk before download. Preparation errors
+                        are shown without sending a partial catalog.
+                    </p>
+                </aside>
+            </section>
+            <section>
+                <h2 data-t="platforms">Adapters and scope</h2>
+                <p>
+                    OpenCart / ocStore, WooCommerce, PrestaShop, 1C-Bitrix, CS-Cart, Magento 2, Shopware 6,
+                    Webasyst, MODX miniShop2, VirtueMart, HikaShop, JoomShopping, Simpla / OkayCMS.
+                </p>
+                <p>Cloud: Shopify, BigCommerce, Wix, Prom.ua, JSON API / Horoshop.</p>
+                <p class="notice" data-t="limits">
+                    Adapters depend on CMS versions and configuration. Check prices, URLs and stock against
+                    your store. Cloud adapters and beta feeds have not been verified against your account.
+                    Horoshop needs a compatible JSON endpoint. Generic XML is not a Prom/Rozetka import feed.
+                </p>
+            </section>
+            <section>
+                <h2 data-t="install">Install and export</h2>
+                <ol>
+                    <li data-t="step1">Download the build for your PHP version.</li>
+                    <li>
+                        <strong data-t="step2"
+                            >Set a long, unique access key at the top of the PHP file.</strong
+                        >
+                        <pre><code>// nyaaxport.php / nyaaxport_56.php
+const NYAAXPORT_ACCESS_KEY = 'CHANGE-ME-NOW';
+// Replace the value in the existing line:
+const NYAAXPORT_ACCESS_KEY = 'your-own-long-random-secret';
 
-// Для nyaaxport_cloud.php:
-<span class="new">const NYAAXPORT_CLOUD_KEY = 'мой-длинный-уникальный-ключ';</span></code></pre><span class="key-note">Это пример — придумайте собственный ключ и не публикуйте его.</span></div><div class="step"><b>Загрузите в корень</b><br>Откройте файл через HTTPS и выполните экспорт.</div><div class="step"><b>Удалите после работы</b><br>Не оставляйте экспортёр доступным без необходимости.</div></div></section>
-      <section class="wrap section donate"><div class="card"><h2>Поддержать проект</h2><p>Если NyaaXport оказался полезен, вы можете поддержать дальнейшую разработку:</p><table><tr><th>Сеть</th><th>Адрес</th></tr><tr><td>USDT — TRC20</td><td>TR3fkALFRTDyRaHsDU8aUmANGPRDy2gU1s</td></tr><tr><td>ETH — ERC20</td><td>0x9d20248c779dcb742f7795a0c7461346c0c8934e</td></tr><tr><td>BTC</td><td>1BQwypiKfhNGb1ryKzdp7TBPL4wR6ckU4J</td></tr><tr><td>PayPal</td><td><a class="paypal-btn" href="https://www.paypal.com/donate/?business=spirt51%40hotmail.com&amp;currency_code=USD" target="_blank" rel="noopener noreferrer">Пополнить PayPal</a></td></tr></table><div class="notice">Перед переводом криптовалюты обязательно проверьте выбранную сеть и адрес.</div></div></section>
-    </article>
-
-    <article class="lang-page" data-page="uk">
-      <header class="wrap hero"><div><span class="eyebrow">Один файл. Будь-який каталог.</span><h1>NyaaXport</h1><p class="lead">Автономний експортер товарів для популярних CMS і хмарних магазинів — без модулів, Composer та складного налаштування.</p><div class="actions"><a class="btn primary" href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport.php">Основна версія · PHP 7–8</a><a class="btn" href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport_56.php">Версія для PHP 5.6</a><a class="btn" href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport_cloud.php">Хмарні магазини</a></div></div><div class="terminal"><b>$</b> upload nyaaxport.php<br><b>✓</b> CMS detected<br><b>✓</b> 12,450 products<br><b>✓</b> SEO URLs + variants<br><b>→</b> CSV · XML · XLS · XLSX</div></header>
-      <section class="wrap section"><figure class="preview"><img src="assets/interface-uk.png" alt="Інтерфейс NyaaXport українською мовою" width="1280" height="720" loading="lazy"><figcaption>Приклад інтерфейсу NyaaXport українською мовою</figcaption></figure></section>
-      <section class="wrap section"><h2>Функціональність</h2><div class="grid"><div class="card"><h3>Універсальний експорт</h3><p>Вибір полів, мов, вітрин, варіантів і фільтрів. Потокова обробка великих каталогів.</p></div><div class="card"><h3>Готові формати</h3><p>CSV, XML, XLS, XLSX, Google Merchant, Meta Catalog, YML, Prom.ua та Rozetka.</p></div><div class="card"><h3>Безпека</h3><p>Ключ доступу, CSRF, обмеження входів, тайм-аут сесії, IP allowlist і діагностика.</p></div></div></section>
-      <section class="wrap section"><h2>Платформи</h2><div class="platforms"><span class="tag">OpenCart / ocStore</span><span class="tag">WooCommerce</span><span class="tag">PrestaShop</span><span class="tag">1C-Бітрікс</span><span class="tag">CS-Cart</span><span class="tag">Magento 2</span><span class="tag">Shopware 6</span><span class="tag">Webasyst</span><span class="tag">MODX miniShop2</span><span class="tag">Joomla shops</span><span class="tag">Simpla / OkayCMS</span><span class="tag">Shopify</span><span class="tag">BigCommerce</span><span class="tag">Wix</span><span class="tag">Prom.ua</span><span class="tag">Horoshop</span></div></section>
-      <section class="wrap section"><h2>Вимоги</h2><div class="grid"><div class="card"><h3>PHP 5.6</h3><p><code>nyaaxport_56.php</code>, PDO MySQL та ZipArchive.</p></div><div class="card"><h3>PHP 7–8</h3><p><code>nyaaxport.php</code>, PDO MySQL та ZipArchive.</p></div><div class="card"><h3>Хмарні API</h3><p><code>nyaaxport_cloud.php</code>, PHP 7–8, cURL та API-токен.</p></div></div></section>
-      <section class="wrap section"><h2>Встановлення</h2><div class="steps"><div class="step"><b>Завантажте файл</b><br>Оберіть збірку в останньому GitHub-релізі.</div><div class="step"><b>Встановіть ключ</b><br>Відкрийте PHP-файл у текстовому редакторі та замініть значення на початку файлу:<pre class="key-example"><code><span class="old">const NYAAXPORT_ACCESS_KEY = 'CHANGE-ME-NOW';</span>
-<span class="new">const NYAAXPORT_ACCESS_KEY = 'мій-довгий-унікальний-ключ';</span>
-
-// Для nyaaxport_cloud.php:
-<span class="new">const NYAAXPORT_CLOUD_KEY = 'мій-довгий-унікальний-ключ';</span></code></pre><span class="key-note">Це приклад — створіть власний ключ і не публікуйте його.</span></div><div class="step"><b>Завантажте в корінь</b><br>Відкрийте файл через HTTPS і виконайте експорт.</div><div class="step"><b>Видаліть після роботи</b><br>Не залишайте експортер доступним без потреби.</div></div></section>
-      <section class="wrap section donate"><div class="card"><h2>Підтримати проєкт</h2><p>Якщо NyaaXport став у пригоді, ви можете підтримати подальшу розробку:</p><table><tr><th>Мережа</th><th>Адреса</th></tr><tr><td>USDT — TRC20</td><td>TR3fkALFRTDyRaHsDU8aUmANGPRDy2gU1s</td></tr><tr><td>ETH — ERC20</td><td>0x9d20248c779dcb742f7795a0c7461346c0c8934e</td></tr><tr><td>BTC</td><td>1BQwypiKfhNGb1ryKzdp7TBPL4wR6ckU4J</td></tr><tr><td>PayPal</td><td><a class="paypal-btn" href="https://www.paypal.com/donate/?business=spirt51%40hotmail.com&amp;currency_code=USD" target="_blank" rel="noopener noreferrer">Поповнити PayPal</a></td></tr></table><div class="notice">Перед переказом криптовалюти обов’язково перевірте вибрану мережу та адресу.</div></div></section>
-    </article>
-
-    <article class="lang-page" data-page="en">
-      <header class="wrap hero"><div><span class="eyebrow">One file. Any catalog.</span><h1>NyaaXport</h1><p class="lead">A standalone product exporter for popular self-hosted and cloud stores — no modules, Composer, or complicated setup.</p><div class="actions"><a class="btn primary" href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport.php">Main build · PHP 7–8</a><a class="btn" href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport_56.php">PHP 5.6 build</a><a class="btn" href="https://github.com/Spirt51/NyaaXport/releases/latest/download/nyaaxport_cloud.php">Cloud stores</a></div></div><div class="terminal"><b>$</b> upload nyaaxport.php<br><b>✓</b> CMS detected<br><b>✓</b> 12,450 products<br><b>✓</b> SEO URLs + variants<br><b>→</b> CSV · XML · XLS · XLSX</div></header>
-      <section class="wrap section"><figure class="preview"><img src="assets/interface-en.png" alt="NyaaXport interface in English" width="1280" height="720" loading="lazy"><figcaption>NyaaXport interface example in English</figcaption></figure></section>
-      <section class="wrap section"><h2>Features</h2><div class="grid"><div class="card"><h3>Universal export</h3><p>Choose fields, languages, storefronts, variants, and filters. Stream large catalogs efficiently.</p></div><div class="card"><h3>Ready-made formats</h3><p>CSV, XML, XLS, XLSX, Google Merchant, Meta Catalog, YML, Prom.ua, and Rozetka.</p></div><div class="card"><h3>Security</h3><p>Access key, CSRF, login throttling, session timeout, IP allowlist, and server diagnostics.</p></div></div></section>
-      <section class="wrap section"><h2>Platforms</h2><div class="platforms"><span class="tag">OpenCart / ocStore</span><span class="tag">WooCommerce</span><span class="tag">PrestaShop</span><span class="tag">1C-Bitrix</span><span class="tag">CS-Cart</span><span class="tag">Magento 2</span><span class="tag">Shopware 6</span><span class="tag">Webasyst</span><span class="tag">MODX miniShop2</span><span class="tag">Joomla shops</span><span class="tag">Simpla / OkayCMS</span><span class="tag">Shopify</span><span class="tag">BigCommerce</span><span class="tag">Wix</span><span class="tag">Prom.ua</span><span class="tag">Horoshop</span></div></section>
-      <section class="wrap section"><h2>Requirements</h2><div class="grid"><div class="card"><h3>PHP 5.6</h3><p><code>nyaaxport_56.php</code>, PDO MySQL, and ZipArchive.</p></div><div class="card"><h3>PHP 7–8</h3><p><code>nyaaxport.php</code>, PDO MySQL, and ZipArchive.</p></div><div class="card"><h3>Cloud APIs</h3><p><code>nyaaxport_cloud.php</code>, PHP 7–8, cURL, and a store API token.</p></div></div></section>
-      <section class="wrap section"><h2>Installation</h2><div class="steps"><div class="step"><b>Download a file</b><br>Choose the right build from the latest GitHub release.</div><div class="step"><b>Set an access key</b><br>Open the PHP file in a text editor and replace the value near the top:<pre class="key-example"><code><span class="old">const NYAAXPORT_ACCESS_KEY = 'CHANGE-ME-NOW';</span>
-<span class="new">const NYAAXPORT_ACCESS_KEY = 'my-long-unique-access-key';</span>
-
-// For nyaaxport_cloud.php:
-<span class="new">const NYAAXPORT_CLOUD_KEY = 'my-long-unique-access-key';</span></code></pre><span class="key-note">This is an example. Create your own key and never publish it.</span></div><div class="step"><b>Upload to the root</b><br>Open the file over HTTPS and run the export.</div><div class="step"><b>Remove it afterward</b><br>Do not leave the exporter publicly accessible when it is not needed.</div></div></section>
-      <section class="wrap section donate"><div class="card"><h2>Support the project</h2><p>If NyaaXport has been useful, you can support further development:</p><table><tr><th>Network</th><th>Address</th></tr><tr><td>USDT — TRC20</td><td>TR3fkALFRTDyRaHsDU8aUmANGPRDy2gU1s</td></tr><tr><td>ETH — ERC20</td><td>0x9d20248c779dcb742f7795a0c7461346c0c8934e</td></tr><tr><td>BTC</td><td>1BQwypiKfhNGb1ryKzdp7TBPL4wR6ckU4J</td></tr><tr><td>PayPal</td><td><a class="paypal-btn" href="https://www.paypal.com/donate/?business=spirt51%40hotmail.com&amp;currency_code=USD" target="_blank" rel="noopener noreferrer">Fund via PayPal</a></td></tr></table><div class="notice">Always verify the selected cryptocurrency network and address before sending funds.</div></div></section>
-    </article>
-  </main>
-  <footer class="wrap footer">NyaaXport · Yevhen Levchenko · MIT License</footer>
-  <script>
-    (function(){
-      var supported=['ru','uk','en'];
-      var initial=(localStorage.getItem('nyaaxport_lang')||navigator.language||'en').slice(0,2).toLowerCase();
-      if(supported.indexOf(initial)<0)initial='en';
-      function setLang(lang){document.documentElement.lang=lang;document.querySelectorAll('.lang-page').forEach(function(el){el.classList.toggle('active',el.dataset.page===lang)});document.querySelectorAll('[data-lang]').forEach(function(el){el.classList.toggle('active',el.dataset.lang===lang)});localStorage.setItem('nyaaxport_lang',lang)}
-      document.querySelectorAll('[data-lang]').forEach(function(el){el.addEventListener('click',function(){setLang(el.dataset.lang)})});setLang(initial);
-    })();
-  </script>
-</body>
+// nyaaxport_cloud.php
+const NYAAXPORT_CLOUD_KEY = 'your-own-long-random-secret';</code></pre>
+                        <p data-t="keyNote">
+                            The CMS lines show before and after. Edit the existing line, do not add a second
+                            constant. Generate your own secret.
+                        </p>
+                    </li>
+                    <li data-t="step3">
+                        Upload one PHP file to the store root and open over HTTPS. Cloud may be hosted
+                        separately.
+                    </li>
+                    <li data-t="step4">
+                        Enter the key, choose fields and filters, then export. In Cloud, select a provider and
+                        enter API credentials.
+                    </li>
+                    <li data-t="step5">
+                        Check the downloaded file and delete the exporter from the server after use.
+                    </li>
+                </ol>
+                <p data-t="disk">
+                    Allow temporary disk space for the complete export. No Composer or additional server files
+                    required.
+                </p>
+            </section>
+            <section class="donate">
+                <h2 data-t="support">Support the project</h2>
+                <p data-t="supportText">If NyaaXport helps you, you can support its development.</p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th scope="col" data-t="network">Network</th>
+                            <th scope="col" data-t="address">Address</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>USDT (TRC20)</td>
+                            <td>TR3fkALFRTDyRaHsDU8aUmANGPRDy2gU1s</td>
+                        </tr>
+                        <tr>
+                            <td>ETH (ERC20)</td>
+                            <td>0x9d20248c779dcb742f7795a0c7461346c0c8934e</td>
+                        </tr>
+                        <tr>
+                            <td>BTC</td>
+                            <td>1BQwypiKfhNGb1ryKzdp7TBPL4wR6ckU4J</td>
+                        </tr>
+                        <tr>
+                            <td>PayPal</td>
+                            <td>
+                                <a
+                                    class="btn"
+                                    href="https://www.paypal.com/donate/?business=spirt51%40hotmail.com&amp;currency_code=USD"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    data-t="paypal"
+                                    >Fund via PayPal</a
+                                >
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="notice" data-t="crypto">
+                    Check the network and address before sending cryptocurrency.
+                </p>
+            </section>
+        </main>
+        <footer class="wrap">
+            NyaaXport · Yevhen Levchenko ·
+            <a href="https://github.com/Spirt51/NyaaXport/blob/main/LICENSE">MIT License</a>
+        </footer>
+        <script src="assets/site.js"></script>
+    </body>
 </html>

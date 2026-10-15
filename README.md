@@ -1,96 +1,64 @@
 # NyaaXport
 
-[Русский](#русский) · [Українська](#українська) · [English](#english)
-
-Single-file product exporter for self-hosted and cloud e-commerce platforms. Created by **Yevhen Levchenko**.
+Single-file product exporter. Author: **Yevhen Levchenko**. [Website](https://spirt51.github.io/NyaaXport/) · [Downloads](https://github.com/Spirt51/NyaaXport/releases/latest) · [Changes](CHANGELOG.md)
 
 ## Русский
 
-NyaaXport — автономный экспортёр товаров без установки модулей и Composer. Загрузите один PHP-файл в корень магазина, выберите поля и скачайте каталог.
+Скачайте один файл, замените `CHANGE-ME-NOW` на длинный уникальный ключ и загрузите в корень магазина. Откройте по HTTPS, войдите, выберите поля и фильтры, выполните экспорт. После работы удалите файл.
 
-### Возможности
+| Файл | Требования | Форматы |
+|---|---|---|
+| `nyaaxport.php` | PHP 7–8, PDO MySQL; ZipArchive для XLSX | CSV, XML, XLSX, Excel HTML (.xls) |
+| `nyaaxport_56.php` | PHP 5.6, OpenSSL, PDO MySQL; ZipArchive для XLSX | Те же |
+| `nyaaxport_cloud.php` | PHP 7–8, cURL, публичный HTTPS API и API-токен | CSV, XML, Excel HTML (.xls) |
 
-- Автоопределение CMS и её версии.
-- OpenCart/ocStore, WooCommerce, PrestaShop, 1C-Битрикс, CS-Cart/Multi-Vendor, Magento 2, Shopware 6, Webasyst Shop-Script, MODX miniShop2, VirtueMart, HikaShop, JoomShopping, Simpla и OkayCMS.
-- Отдельный API-экспортёр для Shopify, BigCommerce, Wix, Prom.ua и Horoshop/JSON API.
-- CSV, XML, XLS, XLSX и фиды Google Merchant, Meta Catalog, YML, Prom.ua, Rozetka.
-- Выбор полей, языка и витрины; фильтры по цене, наличию, статусу, категории, производителю и дате.
-- SEO URL, изображения, варианты товаров, расширенные поля и потоковая обработка больших каталогов.
-- Защита ключом, CSRF, ограничение попыток входа, тайм-аут сессии и список разрешённых IP.
-- Интерфейс RU / UK / EN и встроенная диагностика сервера.
+Во временной папке должно хватать места для полной выгрузки. До завершения подготовки файл пользователю не отправляется. Приложение использует файловый лимит входов по IP: 8 неудачных попыток за 15 минут. Сессия истекает после 30 минут бездействия. При обратном прокси лимит учитывает `REMOTE_ADDR` сервера.
 
-### Требования
+CMS-адаптеры: OpenCart/ocStore, WooCommerce, PrestaShop, 1C-Битрикс, CS-Cart, Magento 2, Shopware 6, Webasyst, MODX miniShop2, VirtueMart, HikaShop, JoomShopping, Simpla/OkayCMS. Cloud: Shopify, BigCommerce, Wix, Prom.ua, совместимый JSON API/Horoshop.
 
-- `nyaaxport_56.php`: PHP 5.6, PDO MySQL; ZipArchive для XLSX.
-- `nyaaxport.php`: PHP 7.x–8.x, PDO MySQL; ZipArchive для XLSX.
-- `nyaaxport_cloud.php`: PHP 7.x–8.x, cURL и API-токен магазина.
-- Доступ к корню сайта и учётным данным базы из конфигурации CMS.
+Адаптеры зависят от версии и настроек магазина: перед использованием сверьте цены, URL и остатки. Выбор языка товаров и витрины, а также выгрузка отдельных значений опций доступны в OpenCart. Комбинации опций не формируются. Другие CMS выгружают основные товары; Simpla использует первый вариант. Cloud Shopify выгружает страницы вариантов без ограничения первыми 100.
 
-### Установка
-
-1. Скачайте подходящий PHP-файл из [последнего релиза](../../releases/latest).
-2. Замените `CHANGE-ME-NOW` в начале файла на длинный уникальный ключ.
-3. Загрузите файл в корень сайта.
-4. Откройте файл по HTTPS, войдите с ключом и выполните экспорт.
-5. После работы удалите или переименуйте файл на сервере.
+Google Merchant, Meta и YML имеют статус beta и требуют проверки импорта. Универсальный XML не является готовым Prom/Rozetka-фидом. Для Horoshop нужен совместимый JSON endpoint, а не только домен магазина. XLS содержит Excel HTML, не бинарный BIFF. Версия CMS может определяться приблизительно, если точные метаданные отсутствуют.
 
 ## Українська
 
-NyaaXport — автономний експортер товарів без встановлення модулів і Composer. Завантажте один PHP-файл у корінь магазину, виберіть поля та отримайте каталог.
+Завантажте один файл для своєї версії PHP, замініть `CHANGE-ME-NOW` на довгий унікальний ключ і розмістіть у корені магазину. Відкрийте через HTTPS, увійдіть, виберіть поля та фільтри, виконайте експорт. Після роботи видаліть файл. Cloud можна розмістити окремо.
 
-### Можливості
+Для CMS потрібен PDO MySQL, для XLSX також ZipArchive. Для Cloud потрібен PHP 7–8, cURL, публічний HTTPS API та токен. У тимчасовій теці має вистачати місця для повного експорту. Інтерфейс доступний українською, російською та англійською.
 
-- Автоматичне визначення CMS та її версії.
-- Підтримка локальних платформ OpenCart/ocStore, WooCommerce, PrestaShop, 1C-Бітрікс, CS-Cart, Magento 2, Shopware 6, Webasyst, MODX miniShop2, Joomla-магазинів, Simpla та OkayCMS.
-- Окремий API-експортер для Shopify, BigCommerce, Wix, Prom.ua та Horoshop/JSON API.
-- CSV, XML, XLS, XLSX і готові торгові фіди.
-- Вибір полів, мови й вітрини, фільтри, SEO URL, зображення та варіанти товарів.
-- Потокова обробка великих каталогів і вбудована діагностика.
-- Захист ключем, CSRF, обмеження спроб входу та сесії.
-
-### Вимоги та встановлення
-
-- PHP 5.6 для `nyaaxport_56.php`; PHP 7–8 для інших версій.
-- PDO MySQL, ZipArchive для XLSX; cURL для хмарних API.
-- Завантажте файл із [останнього релізу](../../releases/latest), змініть `CHANGE-ME-NOW`, розмістіть у корені сайту та відкрийте через HTTPS.
-- Після експорту видаліть або перейменуйте файл.
+Перевірте ціни, URL і залишки на своєму магазині. Значення опцій, мова товарів та вітрина доступні в OpenCart; комбінації не формуються. Інші CMS експортують основні товари; Simpla використовує перший варіант. Фіди Google/Meta/YML мають статус beta. Універсальний XML не є фідом Prom/Rozetka. Для Horoshop потрібен сумісний JSON endpoint.
 
 ## English
 
-NyaaXport is a standalone product exporter with no module or Composer installation. Upload one PHP file to the store root, select fields, and download the catalog.
+Download a PHP build, replace `CHANGE-ME-NOW` with your own long secret and upload the single file to the store root. Open it over HTTPS, sign in, select fields and filters, and export. Delete the exporter after use. Cloud may run separately.
 
-### Features
+CMS builds require PDO MySQL and ZipArchive for XLSX. Cloud requires PHP 7–8, cURL, a public HTTPS API and a token. Allow temporary disk space for the complete export. The UI supports RU/UK/EN and light/dark themes.
 
-- Automatic CMS and version detection.
-- Self-hosted adapters for OpenCart/ocStore, WooCommerce, PrestaShop, 1C-Bitrix, CS-Cart, Magento 2, Shopware 6, Webasyst, MODX miniShop2, Joomla shops, Simpla, and OkayCMS.
-- Separate API exporter for Shopify, BigCommerce, Wix, Prom.ua, and Horoshop/custom JSON APIs.
-- CSV, XML, XLS, XLSX, Google Merchant, Meta Catalog, YML, Prom.ua, and Rozetka feeds.
-- Field, language and storefront selection; price, inventory, status, category, manufacturer, and date filters.
-- SEO URLs, images, variants, extended fields, and streaming for large catalogs.
-- Access key, CSRF protection, login throttling, session timeout, optional IP allowlist, and server diagnostics.
+Verify prices, URLs and stock against your store configuration. OpenCart supports data language/store selection and individual option values, not combinations. Other CMS adapters export base products; Simpla selects its first variant. Google/Meta/YML feeds are beta; generic XML is not a dedicated Prom/Rozetka feed. Horoshop requires a compatible JSON endpoint. `.xls` means Excel HTML rather than binary BIFF.
 
-### Requirements and installation
+## Development
 
-- PHP 5.6 for `nyaaxport_56.php`; PHP 7.x–8.x for the other builds.
-- PDO MySQL and ZipArchive for XLSX; cURL for cloud APIs.
-- Download a file from the [latest release](../../releases/latest), replace `CHANGE-ME-NOW`, upload it to the site root, and open it over HTTPS.
-- Delete or rename the server-side file after export.
+Edit `src/cms.php`, `src/cloud.php`, `src/common.php` and `src/interface.css`. Build outputs in the repository root are standalone deployable files; no `src/`, npm or Composer dependencies are needed on the store server.
 
-## Support the project
+```sh
+npm ci --ignore-scripts
+npm run css
+npm run build
+node tests/syntax.mjs
+php tests/regression.php
+```
+
+HTTP checks: run `node tests/prepare-web.mjs`, serve `.test-runtime/web` with PHP on `127.0.0.1:8766`, then run `node tests/web.mjs`. The local fixtures use a public test key and must never be deployed. Test fixtures do not connect to a production store.
+
+## Support
 
 | Network | Address |
 |---|---|
-| USDT — TRC20 | `TR3fkALFRTDyRaHsDU8aUmANGPRDy2gU1s` |
-| ETH — ERC20 | `0x9d20248c779dcb742f7795a0c7461346c0c8934e` |
+| USDT (TRC20) | `TR3fkALFRTDyRaHsDU8aUmANGPRDy2gU1s` |
+| ETH (ERC20) | `0x9d20248c779dcb742f7795a0c7461346c0c8934e` |
 | BTC | `1BQwypiKfhNGb1ryKzdp7TBPL4wR6ckU4J` |
-| PayPal | `spirt51@hotmail.com` |
+| PayPal | [Support via PayPal](https://www.paypal.com/donate/?business=spirt51%40hotmail.com&currency_code=USD) |
 
-Always verify the selected cryptocurrency network and address before sending funds.
+Check the network and address before sending cryptocurrency.
 
-## Security
-
-The exporter reads store data and does not modify the database. Keep it protected with a strong access key, use HTTPS, and remove it from the server when finished. API credentials entered into the cloud exporter are used for the current request and are not written to disk.
-
-## License
-
-[MIT](LICENSE) © Yevhen Levchenko
+[MIT License](LICENSE) © Yevhen Levchenko
