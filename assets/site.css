@@ -265,3 +265,125 @@ footer {
         border-radius: 4px;
     }
 }
+
+#gallery {
+    width: 100%;
+    align-items: flex-start;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: auto;
+    overflow-y: hidden;
+    position: relative;
+}
+#gallery .carousel-item {
+    flex: 0 0 100%;
+    width: 100%;
+    min-width: 0;
+}
+#gallery figure {
+    margin: 0;
+    width: 100%;
+}
+.screenshot-open {
+    display: block;
+    cursor: zoom-in;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    overflow: hidden;
+    background: #fff;
+}
+.screenshot-open img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border: 0;
+    border-radius: 0;
+}
+#gallery figcaption {
+    margin: 10px 0 0;
+    font-size: 15px;
+}
+.gallery-controls {
+    display: none;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 16px;
+}
+.gallery-ready .gallery-controls {
+    display: flex;
+}
+.gallery-tip {
+    color: var(--muted);
+    font-size: 14px;
+}
+#gallery-count {
+    font-variant-numeric: tabular-nums;
+    min-width: 45px;
+    text-align: center;
+}
+#lightbox .modal-box {
+    width: calc(100vw - 32px);
+    max-width: 1440px;
+    max-height: calc(100dvh - 32px);
+    padding: 16px;
+    background: var(--surface);
+    color: var(--ink);
+    border-radius: 8px;
+    overflow: auto;
+}
+#lightbox-image {
+    display: block;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: calc(100dvh - 185px);
+    margin: 12px auto;
+    object-fit: contain;
+}
+.lightbox-close {
+    display: flex;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    left: 0;
+    background: var(--surface);
+    z-index: 1;
+}
+#lightbox-image {
+    cursor: zoom-in;
+}
+#lightbox.is-zoomed #lightbox-image {
+    max-width: none;
+    max-height: none;
+    cursor: zoom-out;
+}
+.lightbox-controls {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+}
+#lightbox-caption {
+    text-align: center;
+    font-size: 15px;
+    margin: 12px 0;
+}
+#lightbox .modal-backdrop button {
+    font-size: 0;
+    background: transparent;
+    cursor: zoom-out;
+}
+html:has(#lightbox[open]) {
+    overflow: hidden;
+}
+@media (max-width: 760px) {
+    .gallery-tip {
+        flex-basis: 100%;
+    }
+    #lightbox .modal-box {
+        padding: 10px;
+        width: calc(100vw - 16px);
+    }
+    #lightbox-image {
+        max-height: calc(100dvh - 195px);
+    }
+}

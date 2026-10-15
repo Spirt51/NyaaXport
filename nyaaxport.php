@@ -440,6 +440,7 @@ label {
     margin: 24px 0;
 }
 .filters .row {
+    align-items: flex-end;
     margin: 12px 0;
 }
 .hint,
@@ -561,7 +562,7 @@ function nxFooter()
 ) ?></a></td></tr></tbody></table>
 <p class="hint"><?= nxEscape(
     nxText("Check the network and address before sending cryptocurrency.")
-) ?></p><p class="author">NyaaXport 1.1.0 · Yevhen Levchenko</p></footer></main>
+) ?></p><p class="author">NyaaXport 1.1.1 · Yevhen Levchenko</p></footer></main>
 <script>
 (function(){
 var root=document.documentElement;try{root.dataset.theme=localStorage.getItem('nx_theme')||'light'}catch(e){}

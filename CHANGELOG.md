@@ -1,3 +1,9 @@
+# 1.1.1
+
+- Website: three real screenshots per language in a slider, lightbox, keyboard controls and 100% zoom. Screenshots are cropped to the application content and explicitly use a demonstration catalog.
+- PHP UI: bottom-aligned date and stock filter controls on all builds.
+- [Multilingual release notes](releases/v1.1.1.md).
+
 # 1.1.0
 
 ## Русский

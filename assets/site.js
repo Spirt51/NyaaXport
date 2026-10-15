@@ -9,7 +9,7 @@
             cmsReq: "CMS-сборка: PDO MySQL; ZipArchive для XLSX.",
             legacyReq: "Старый PHP с тем же интерфейсом. OpenSSL, PDO MySQL; ZipArchive для XLSX.",
             cloudReq: "PHP 7–8, cURL, публичный HTTPS API и токен магазина. CSV, XML и Excel HTML.",
-            release: "Релиз 1.1.0: изменения и ограничения",
+            release: "Релиз 1.1.1: изменения и ограничения",
             screens: "Интерфейс экспортёра",
             screenNote: "Работающий PHP-интерфейс входа, доступный до подключения к базе магазина.",
             languages: "Интерфейс и инструкция на русском, украинском и английском.",
@@ -51,7 +51,7 @@
             cmsReq: "CMS-збірка: PDO MySQL; ZipArchive для XLSX.",
             legacyReq: "Старий PHP з тим самим інтерфейсом. OpenSSL, PDO MySQL; ZipArchive для XLSX.",
             cloudReq: "PHP 7–8, cURL, публічний HTTPS API та токен магазину. CSV, XML і Excel HTML.",
-            release: "Реліз 1.1.0: зміни та обмеження",
+            release: "Реліз 1.1.1: зміни та обмеження",
             screens: "Інтерфейс експортера",
             screenNote: "Робочий PHP-інтерфейс входу, доступний до підключення до бази магазину.",
             languages: "Інтерфейс та інструкція українською, російською й англійською.",
@@ -86,6 +86,28 @@
         },
     };
     var english = {};
+    Object.assign(words.ru, {
+        screenNote:
+            "Работающий экспортёр с локальным демонстрационным каталогом: фильтры, поля и завершённая выгрузка.",
+        shotFilters: "1. Выберите витрину и фильтры",
+        shotExport: "2. Отметьте поля и скачайте каталог",
+        shotLogin: "3. Доступ защищён ключом",
+        previous: "Назад",
+        next: "Далее",
+        close: "Закрыть",
+        zoomHint: "Нажмите на снимок для увеличения. Листайте свайпом.",
+    });
+    Object.assign(words.uk, {
+        screenNote:
+            "Робочий експортер із локальним демонстраційним каталогом: фільтри, поля та завершений експорт.",
+        shotFilters: "1. Виберіть вітрину та фільтри",
+        shotExport: "2. Позначте поля та завантажте каталог",
+        shotLogin: "3. Доступ захищено ключем",
+        previous: "Назад",
+        next: "Далі",
+        close: "Закрити",
+        zoomHint: "Натисніть на знімок для збільшення. Гортайте свайпом.",
+    });
     document.querySelectorAll("[data-t]").forEach(function (el) {
         english[el.dataset.t] = el.textContent;
     });
@@ -111,13 +133,16 @@
         document.querySelectorAll("[data-lang]").forEach(function (el) {
             el.setAttribute("aria-pressed", String(el.dataset.lang === lang));
         });
-        var img = document.getElementById("interface");
-        img.src = "assets/interface-" + lang + ".png";
-        img.alt = {
-            ru: "Страница входа NyaaXport на русском",
-            uk: "Сторінка входу NyaaXport українською",
-            en: "NyaaXport login interface in English",
-        }[lang];
+        document.querySelectorAll("[data-shot]").forEach(function (link) {
+            link.href = "assets/gallery-" + lang + "-" + link.dataset.shot + ".png";
+            var img = link.querySelector("img");
+            img.src = link.href;
+            img.alt = link.closest("figure").querySelector("figcaption").textContent;
+        });
+        document
+            .querySelector(".modal-backdrop button")
+            .setAttribute("aria-label", text.close || english.close);
+        if (document.getElementById("lightbox").open) showLightbox(lightboxIndex);
         save("nyaaxport_lang", lang);
     }
     document.querySelectorAll("[data-lang]").forEach(function (el) {
@@ -131,5 +156,100 @@
         document.documentElement.dataset.theme = theme;
         save("nx_theme", theme);
     };
+    var gallery = document.getElementById("gallery");
+    document.documentElement.classList.add("gallery-ready");
+    var slides = Array.from(gallery.querySelectorAll(".carousel-item"));
+    var lightbox = document.getElementById("lightbox");
+    var currentSlide = 0;
+    var lightboxIndex = 0;
+    function updateCount() {
+        document.getElementById("gallery-count").textContent = currentSlide + 1 + " / " + slides.length;
+        gallery.style.height =
+            Math.ceil(slides[currentSlide].querySelector("figure").getBoundingClientRect().height) + "px";
+    }
+    function go(index) {
+        currentSlide = (index + slides.length) % slides.length;
+        gallery.scrollTo({
+            left: slides[currentSlide].offsetLeft - slides[0].offsetLeft,
+            behavior: "instant",
+        });
+        updateCount();
+    }
+    function showLightbox(index) {
+        lightboxIndex = (index + slides.length) % slides.length;
+        var link = slides[lightboxIndex].querySelector("[data-shot]");
+        var img = document.getElementById("lightbox-image");
+        img.src = link.href;
+        img.alt = link.querySelector("img").alt;
+        document.getElementById("lightbox-caption").textContent =
+            slides[lightboxIndex].querySelector("figcaption").textContent;
+        lightbox.classList.remove("is-zoomed");
+        document.getElementById("lightbox-zoom").setAttribute("aria-pressed", "false");
+    }
+    document.getElementById("gallery-prev").onclick = function () {
+        go(currentSlide - 1);
+    };
+    document.getElementById("gallery-next").onclick = function () {
+        go(currentSlide + 1);
+    };
+    gallery.addEventListener("scroll", function () {
+        var width = gallery.clientWidth;
+        if (width) {
+            currentSlide = Math.max(0, Math.min(slides.length - 1, Math.round(gallery.scrollLeft / width)));
+            updateCount();
+        }
+    });
+    document.querySelectorAll("[data-shot]").forEach(function (link, i) {
+        link.onclick = function (e) {
+            if (!lightbox.showModal) return;
+            e.preventDefault();
+            showLightbox(i);
+            lightbox.showModal();
+        };
+    });
+    document.getElementById("lightbox-prev").onclick = function () {
+        showLightbox(lightboxIndex - 1);
+    };
+    document.getElementById("lightbox-next").onclick = function () {
+        showLightbox(lightboxIndex + 1);
+    };
+    lightbox.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            showLightbox(lightboxIndex - 1);
+        }
+        if (e.key === "ArrowRight") {
+            e.preventDefault();
+            showLightbox(lightboxIndex + 1);
+        }
+    });
+    lightbox.addEventListener("close", function () {
+        requestAnimationFrame(function () {
+            go(lightboxIndex);
+            slides[lightboxIndex].querySelector("a").focus({ preventScroll: true });
+        });
+    });
+    function toggleZoom() {
+        var zoomed = lightbox.classList.toggle("is-zoomed");
+        document.getElementById("lightbox-zoom").setAttribute("aria-pressed", String(zoomed));
+    }
+    document.getElementById("lightbox-zoom").onclick = toggleZoom;
+    document.getElementById("lightbox-image").onclick = toggleZoom;
+    gallery.querySelectorAll("img").forEach(function (img) {
+        img.addEventListener("load", updateCount);
+    });
+    gallery.addEventListener("keydown", function (e) {
+        if (e.key === "ArrowLeft") {
+            e.preventDefault();
+            go(currentSlide - 1);
+        }
+        if (e.key === "ArrowRight") {
+            e.preventDefault();
+            go(currentSlide + 1);
+        }
+    });
+    window.addEventListener("resize", function () {
+        go(currentSlide);
+    });
     setLang((read("nyaaxport_lang") || navigator.language || "en").slice(0, 2).toLowerCase());
 })();

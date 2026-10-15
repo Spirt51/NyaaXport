@@ -52,4 +52,4 @@ jobs:
           cache: npm
       - run: npm ci --ignore-scripts
       - run: npm run css && npm run build && node tests/syntax.mjs
-      - run: git diff --exit-code -- nyaaxport.php nyaaxport_56.php nyaaxport_cloud.php assets/components.css SHA256SUMS
+      - run: git diff --exit-code -- nyaaxport.php nyaaxport_56.php nyaaxport_cloud.php assets/components.css assets/gallery-components.css SHA256SUMS

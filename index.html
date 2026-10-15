@@ -9,7 +9,8 @@
         />
         <title>NyaaXport | Product exporter</title>
         <link rel="stylesheet" href="assets/components.css" />
-        <link rel="stylesheet" href="assets/site.css" />
+        <link rel="stylesheet" href="assets/gallery-components.css?v=gallery1" />
+        <link rel="stylesheet" href="assets/site.css?v=gallery1" />
     </head>
     <body>
         <nav class="wrap nav" aria-label="Language and theme">
@@ -65,28 +66,75 @@
                 </div>
                 <a
                     class="release"
-                    href="https://github.com/Spirt51/NyaaXport/releases/tag/v1.1.0"
+                    href="https://github.com/Spirt51/NyaaXport/releases/tag/v1.1.1"
                     data-t="release"
-                    >Release 1.1.0: changes and limitations</a
+                    >Release 1.1.1: changes and limitations</a
                 >
             </header>
-            <section>
-                <h2 data-t="screens">Inside the exporter</h2>
+            <section class="gallery-section" aria-labelledby="gallery-title">
+                <h2 id="gallery-title" data-t="screens">Inside the exporter</h2>
                 <p data-t="screenNote">
-                    Actual PHP login interface, available before connecting to the store database.
+                    Actual exporter with a local demonstration catalog: filters, fields and a completed
+                    export.
                 </p>
-                <figure>
-                    <img
-                        id="interface"
-                        src="assets/interface-en.png"
-                        alt="NyaaXport login interface in English"
-                        width="1280"
-                        height="1000"
-                    />
-                    <figcaption data-t="languages">
-                        Interface and instructions in English, Russian and Ukrainian.
-                    </figcaption>
-                </figure>
+                <div
+                    class="carousel carousel-horizontal"
+                    id="gallery"
+                    aria-roledescription="carousel"
+                    aria-label="NyaaXport screenshots"
+                >
+                    <div class="carousel-item">
+                        <figure>
+                            <a
+                                class="screenshot-open"
+                                href="assets/gallery-en-filters.png"
+                                data-shot="filters"
+                                ><img
+                                    src="assets/gallery-en-filters.png"
+                                    alt="Product filters"
+                                    width="1024"
+                                    height="640"
+                            /></a>
+                            <figcaption data-t="shotFilters">1. Choose the storefront and filters</figcaption>
+                        </figure>
+                    </div>
+                    <div class="carousel-item">
+                        <figure>
+                            <a class="screenshot-open" href="assets/gallery-en-export.png" data-shot="export"
+                                ><img
+                                    src="assets/gallery-en-export.png"
+                                    alt="Fields and completed export"
+                                    width="1024"
+                                    height="640"
+                                    loading="lazy"
+                            /></a>
+                            <figcaption data-t="shotExport">
+                                2. Select fields and download the catalog
+                            </figcaption>
+                        </figure>
+                    </div>
+                    <div class="carousel-item">
+                        <figure>
+                            <a class="screenshot-open" href="assets/gallery-en-login.png" data-shot="login"
+                                ><img
+                                    src="assets/gallery-en-login.png"
+                                    alt="Access key login"
+                                    width="1024"
+                                    height="300"
+                                    loading="lazy"
+                            /></a>
+                            <figcaption data-t="shotLogin">3. Access is protected by a key</figcaption>
+                        </figure>
+                    </div>
+                </div>
+                <div class="gallery-controls">
+                    <button class="btn" id="gallery-prev" data-t="previous">Previous</button
+                    ><span id="gallery-count" role="status" aria-live="polite">1 / 3</span
+                    ><button class="btn" id="gallery-next" data-t="next">Next</button
+                    ><span class="gallery-tip" data-t="zoomHint"
+                        >Click a screenshot to enlarge. Swipe to browse.</span
+                    >
+                </div>
             </section>
             <section class="details">
                 <div>
@@ -217,6 +265,23 @@ const NYAAXPORT_CLOUD_KEY = 'your-own-long-random-secret';</code></pre>
             NyaaXport · Yevhen Levchenko ·
             <a href="https://github.com/Spirt51/NyaaXport/blob/main/LICENSE">MIT License</a>
         </footer>
-        <script src="assets/site.js"></script>
+        <dialog id="lightbox" class="modal" aria-labelledby="lightbox-caption">
+            <div class="modal-box">
+                <form method="dialog" class="lightbox-close">
+                    <button class="btn" type="button" id="lightbox-zoom" aria-pressed="false">100%</button>
+                    <button class="btn" data-t="close">Close</button>
+                </form>
+                <img id="lightbox-image" alt="" />
+                <p id="lightbox-caption"></p>
+                <div class="lightbox-controls">
+                    <button class="btn" id="lightbox-prev" data-t="previous">Previous</button
+                    ><button class="btn" id="lightbox-next" data-t="next">Next</button>
+                </div>
+            </div>
+            <form method="dialog" class="modal-backdrop">
+                <button tabindex="-1" aria-label="Close image">close</button>
+            </form>
+        </dialog>
+        <script src="assets/site.js?v=gallery1"></script>
     </body>
 </html>

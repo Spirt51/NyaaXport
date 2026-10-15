@@ -2,7 +2,7 @@
   "private": true,
   "scripts": {
     "build": "node tools/build.mjs",
-    "css": "tailwindcss -i src/components.css -o assets/components.css --minify",
+    "css": "tailwindcss -i src/components.css -o assets/components.css --minify && tailwindcss -i src/gallery-components.css -o assets/gallery-components.css --minify",
     "format": "prettier --write src/*.php src/*.mjs tools/*.mjs index.html"
   },
   "devDependencies": {

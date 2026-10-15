@@ -142,6 +142,7 @@ label {
     margin: 24px 0;
 }
 .filters .row {
+    align-items: flex-end;
     margin: 12px 0;
 }
 .hint,
