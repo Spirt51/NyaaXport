@@ -302,19 +302,183 @@ footer {
     margin: 10px 0 0;
     font-size: 15px;
 }
-.gallery-controls {
-    display: none;
-    align-items: center;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 16px;
+.gallery-ready #gallery figcaption {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
 }
-.gallery-ready .gallery-controls {
+.gallery-viewer {
+    position: relative;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--surface);
+}
+.gallery-viewer .screenshot-open {
+    border: 0;
+    border-radius: 0;
+}
+.gallery-arrow,
+.gallery-expand {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    box-shadow: 0 2px 12px #17112624;
+}
+.gallery-ready .gallery-arrow,
+.gallery-ready .gallery-expand {
     display: flex;
 }
-.gallery-tip {
+.gallery-arrow {
+    top: 50%;
+    transform: translateY(-50%);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    padding: 0;
+    justify-content: center;
+    background: var(--surface);
+}
+.gallery-arrow-prev {
+    left: 16px;
+}
+.gallery-arrow-next {
+    right: 16px;
+}
+.gallery-arrow svg,
+.gallery-expand svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}
+.gallery-expand {
+    top: 14px;
+    right: 14px;
+    gap: 8px;
+    padding: 9px 12px;
+    border-radius: 7px;
+    font-size: 13px;
+}
+.gallery-caption {
+    display: none;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: baseline;
+    padding: 18px 0 14px;
+}
+.gallery-ready .gallery-caption {
+    display: flex;
+}
+#gallery-caption {
+    margin: 0;
+    font-size: 17px;
+    font-weight: 600;
+}
+.gallery-caption #gallery-count {
+    font:
+        13px/1.5 ui-monospace,
+        monospace;
     color: var(--muted);
-    font-size: 14px;
+    white-space: nowrap;
+}
+.gallery-thumbs {
+    display: none;
+    gap: 12px;
+    max-width: 640px;
+}
+.gallery-ready .gallery-thumbs {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+.gallery-thumb {
+    min-width: 0;
+    padding: 4px;
+    border: 2px solid transparent;
+    background: transparent;
+    border-radius: 9px;
+    cursor: pointer;
+    text-align: left;
+    color: var(--muted);
+    transition: border-color 0.15s;
+}
+.gallery-thumb[aria-current="true"] {
+    border-color: var(--accent);
+    color: var(--ink);
+    background: var(--surface);
+}
+.gallery-thumb > img {
+    display: block;
+    width: 100%;
+    height: 92px;
+    object-fit: cover;
+    object-position: top;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+}
+.gallery-thumb > span {
+    display: flex;
+    gap: 8px;
+    padding: 8px 3px 3px;
+    align-items: baseline;
+    font-size: 13px;
+    line-height: 1.4;
+}
+.gallery-thumb b {
+    font-size: 11px;
+    color: var(--accent);
+    font-weight: 600;
+}
+@media (max-width: 760px) {
+    .gallery-arrow {
+        width: 44px;
+        height: 44px;
+    }
+    .gallery-arrow-prev {
+        left: 8px;
+    }
+    .gallery-arrow-next {
+        right: 8px;
+    }
+    .gallery-expand {
+        top: 8px;
+        right: 8px;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+    }
+    .gallery-expand span {
+        display: none;
+    }
+    .gallery-caption {
+        padding: 14px 0 10px;
+    }
+    #gallery-caption {
+        font-size: 15px;
+    }
+    .gallery-thumbs {
+        gap: 6px;
+    }
+    .gallery-thumb {
+        padding: 3px;
+        border-radius: 7px;
+    }
+    .gallery-thumb > img {
+        height: 55px;
+    }
+    .gallery-thumb > span {
+        font-size: 11px;
+        gap: 4px;
+        padding: 6px 1px 2px;
+    }
+    .gallery-thumb b {
+        display: none;
+    }
 }
 #gallery-count {
     font-variant-numeric: tabular-nums;
@@ -376,9 +540,6 @@ html:has(#lightbox[open]) {
     overflow: hidden;
 }
 @media (max-width: 760px) {
-    .gallery-tip {
-        flex-basis: 100%;
-    }
     #lightbox .modal-box {
         padding: 10px;
         width: calc(100vw - 16px);

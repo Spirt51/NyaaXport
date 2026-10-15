@@ -87,6 +87,18 @@
     };
     var english = {};
     Object.assign(words.ru, {
+        enlarge: "Увеличить",
+        thumbFilters: "Фильтры",
+        thumbExport: "Поля и экспорт",
+        thumbLogin: "Вход",
+    });
+    Object.assign(words.uk, {
+        enlarge: "Збільшити",
+        thumbFilters: "Фільтри",
+        thumbExport: "Поля та експорт",
+        thumbLogin: "Вхід",
+    });
+    Object.assign(words.ru, {
         screenNote:
             "Работающий экспортёр с локальным демонстрационным каталогом: фильтры, поля и завершённая выгрузка.",
         shotFilters: "1. Выберите витрину и фильтры",
@@ -142,6 +154,18 @@
         document
             .querySelector(".modal-backdrop button")
             .setAttribute("aria-label", text.close || english.close);
+        document
+            .getElementById("gallery-prev")
+            .setAttribute("aria-label", text.previous || english.previous || "Previous");
+        document
+            .getElementById("gallery-next")
+            .setAttribute("aria-label", text.next || english.next || "Next");
+        document.getElementById("gallery-expand").setAttribute("aria-label", text.enlarge || english.enlarge);
+        document.querySelectorAll("[data-slide]").forEach(function (button, i) {
+            button.querySelector("img").src = slides[i].querySelector("img").src;
+            button.setAttribute("aria-label", slides[i].querySelector("figcaption").textContent);
+        });
+        updateCount();
         if (document.getElementById("lightbox").open) showLightbox(lightboxIndex);
         save("nyaaxport_lang", lang);
     }
@@ -163,7 +187,14 @@
     var currentSlide = 0;
     var lightboxIndex = 0;
     function updateCount() {
-        document.getElementById("gallery-count").textContent = currentSlide + 1 + " / " + slides.length;
+        document.getElementById("gallery-count").textContent =
+            "0" + (currentSlide + 1) + " / 0" + slides.length;
+        document.getElementById("gallery-caption").textContent = slides[currentSlide]
+            .querySelector("figcaption")
+            .textContent.replace(/^\d+\.\s*/, "");
+        document.querySelectorAll("[data-slide]").forEach(function (button, i) {
+            button.setAttribute("aria-current", String(i === currentSlide));
+        });
         gallery.style.height =
             Math.ceil(slides[currentSlide].querySelector("figure").getBoundingClientRect().height) + "px";
     }
@@ -191,6 +222,15 @@
     };
     document.getElementById("gallery-next").onclick = function () {
         go(currentSlide + 1);
+    };
+    document.querySelectorAll("[data-slide]").forEach(function (button, i) {
+        button.onclick = function () {
+            go(i);
+        };
+    });
+    document.getElementById("gallery-expand").onclick = function () {
+        showLightbox(currentSlide);
+        lightbox.showModal();
     };
     gallery.addEventListener("scroll", function () {
         var width = gallery.clientWidth;
